@@ -1,24 +1,31 @@
-import React from 'react'
-import {SidebarData} from './SidebarData';
+import React from "react";
+import { SidebarData } from "./SidebarData";
+import SidebarIcon from './SidebarIcon';
 
 function Sidebar() {
   return (
     <div className="Sidebar">
+      <SidebarIcon />
       <ul className="SidebarList">
         {/* liにはicon, listtitle, linkの属性が含まれる。1つ1つのliに1つ1つ書いてくのは面倒なので、その属性をcomponentとして書き出していく→SidebarData.jsへ */}
         {SidebarData.map((value, key) => {
-          return(
-            <li key={key} className="row" onClick={() => {
-              window.location.pathname = value.link
-            }}>
+          return (
+            <li
+              key={key}
+              id={window.location.pathname === value.link ? "active" : ""}
+              className="row"
+              onClick={() => {
+                window.location.pathname = value.link;
+              }}
+            >
               <div id="icon">{value.icon}</div>
-              <div id="icon">{value.title}</div>
+              <div id="title">{value.title}</div>
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
